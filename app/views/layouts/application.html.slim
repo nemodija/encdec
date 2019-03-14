@@ -2,7 +2,8 @@ doctype html
 html
   head
     title
-      | Encdec
+      | Kelp
+    = favicon_link_tag 'favicon.ico'
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
@@ -11,5 +12,5 @@ html
     .container
       .row
         .col
-          .h1 encdec
+          .h1 kelp
       = yield
