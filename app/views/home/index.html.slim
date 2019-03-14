@@ -1,2 +1,13 @@
-h1 Home#index
-p Find me in app/views/home/index.html.slim
+.container
+  h1. encdec
+
+  = form_tag convert_path, { remote: true, class: 'form-ajax' } do
+    = text_area :input, :text
+    = submit_tag 'CGI.escapeHTML', { name: 'CGIescapeHTML', class: 'btn btn-primary' }
+    = submit_tag 'CGI.escape', { name: 'CGIescape', class: 'btn btn-primary' }
+    = submit_tag 'URI.encode', { name: 'URIencode', class: 'btn btn-primary' }
+    = submit_tag 'CGI.unescapeHTML', { name: 'CGIunescapeHTML', class: 'btn btn-primary' }
+    = submit_tag 'CGI.unescape', { name: 'CGIunescape', class: 'btn btn-primary' }
+    = submit_tag 'URI.decode', { name: 'URIdecode', class: 'btn btn-primary' }
+
+  pre#result.bg-info
