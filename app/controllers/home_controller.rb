@@ -3,12 +3,16 @@ class HomeController < ApplicationController
   end
 
   def convert
+
     rt = cgi_unescape_html(params[:input][:text]) if params[:CGIunescapeHTML].present?
     rt = cgi_unescape(params[:input][:text]) if params[:CGIunescape].present?
     rt = uri_decode(params[:input][:text]) if params[:URIdecode].present?
     rt = cgi_escape_html(params[:input][:text]) if params[:CGIescapeHTML].present?
     rt = cgi_escape(params[:input][:text]) if params[:CGIescape].present?
     rt = uri_encode(params[:input][:text]) if params[:URIencode].present?
+
+    rt = base64_encode64(params[:input][:text]) if params[:BASE64encode64].present?
+    rt = base64_decode64(params[:input][:text]) if params[:BASE64decode64].present?
 
     @result = rt
   end
@@ -59,5 +63,13 @@ class HomeController < ApplicationController
       lines.push URI.encode(line.chomp).gsub(/\\/, '\\\\\\')
     end
     lines.join('\\n')
+  end
+
+  def base64_encode64(value)
+    Base64.encode64(value).lines.map{|l|l.chomp}.join('\\n')
+  end
+
+  def base64_decode64(value)
+    Base64.decode64(value).lines.map{|l|l.chomp}.join('\\n')
   end
 end
