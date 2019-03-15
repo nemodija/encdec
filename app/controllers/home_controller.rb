@@ -1,5 +1,6 @@
 require 'rexml/document'
 require 'rexml/formatters/pretty'
+require 'json'
 
 class HomeController < ApplicationController
 
@@ -31,6 +32,7 @@ class HomeController < ApplicationController
     rt = base64_decode64(params[:input][:text]) if params[:BASE64decode64].present?
 
     rt = xml_formatting(params[:input][:text]) if params[:XMLformatting].present?
+    rt = json_formatting(params[:input][:text]) if params[:JSONformatting].present?
 
     @input.index += 1
     @input.text = rt
@@ -98,5 +100,9 @@ class HomeController < ApplicationController
     output = StringIO.new
     pretty_formatter.write(doc, output)
     output.string
+  end
+
+  def json_formatting(value)
+    JSON.pretty_generate(JSON.parse(value))
   end
 end
