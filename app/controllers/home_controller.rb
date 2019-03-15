@@ -6,7 +6,7 @@ class HomeController < ApplicationController
   class Input
     attr_accessor :index, :text
 
-    def initialize(param = { index: -1, text: "" })
+    def initialize(param = { index: 0, text: "" })
       self.index = param[:index].to_i
       self.text  = param[:text]
     end
