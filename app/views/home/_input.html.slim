@@ -1,0 +1,18 @@
+= form_tag convert_path, { remote: true, class: 'form-ajax' } do
+  = hidden_field :input, :index
+  .row
+    .col.mt-2
+      = text_area :input, :text, { :class => "form-control", :style => "min-height: 150px; font-size: small;" }
+  .row
+    .col.mt-2
+      = submit_tag 'CGI.escapeHTML',   { class: 'm-1 btn btn-sm btn-default', name: 'CGIescapeHTML'   }
+      = submit_tag 'CGI.unescapeHTML', { class: 'm-1 btn btn-sm btn-default', name: 'CGIunescapeHTML' }
+      = submit_tag 'CGI.escape',       { class: 'm-1 btn btn-sm btn-primary', name: 'CGIescape'       }
+      = submit_tag 'CGI.unescape',     { class: 'm-1 btn btn-sm btn-primary', name: 'CGIunescape'     }
+      = submit_tag 'URI.encode',       { class: 'm-1 btn btn-sm btn-success', name: 'URIencode'       }
+      = submit_tag 'URI.decode',       { class: 'm-1 btn btn-sm btn-success', name: 'URIdecode'       }
+      = submit_tag 'Base64.encode64',  { class: 'm-1 btn btn-sm btn-info',    name: 'BASE64encode64'  }
+      = submit_tag 'Base64.decode64',  { class: 'm-1 btn btn-sm btn-info',    name: 'BASE64decode64'  }
+      = submit_tag 'XML.formatting',   { class: 'm-1 btn btn-sm btn-warning', name: 'XMLformatting'   }
+
+= tag.div id: "result_#{@input.index}"

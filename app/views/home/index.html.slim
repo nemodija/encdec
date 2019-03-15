@@ -1,17 +1,1 @@
-= form_tag convert_path, { remote: true, class: 'form-ajax' } do
-  .row
-    .col.mt-2
-      = text_area :input, :text, { :class => "form-control" }
-  .row
-    .col.mt-2
-      = submit_tag 'CGI.escapeHTML',   { class: 'm-1 btn btn-primary', name: 'CGIescapeHTML'   }
-      = submit_tag 'CGI.escape',       { class: 'm-1 btn btn-primary', name: 'CGIescape'       }
-      = submit_tag 'URI.encode',       { class: 'm-1 btn btn-primary', name: 'URIencode'       }
-      = submit_tag 'CGI.unescapeHTML', { class: 'm-1 btn btn-primary', name: 'CGIunescapeHTML' }
-      = submit_tag 'CGI.unescape',     { class: 'm-1 btn btn-primary', name: 'CGIunescape'     }
-      = submit_tag 'URI.decode',       { class: 'm-1 btn btn-primary', name: 'URIdecode'       }
-      = submit_tag 'Base64.encode64',  { class: 'm-1 btn btn-primary', name: 'BASE64encode64'  }
-      = submit_tag 'Base64.decode64',  { class: 'm-1 btn btn-primary', name: 'BASE64decode64'  }
-.row
-  .col.mt-2
-    pre#result.bg-info.form-control
+= render :partial => "input"
