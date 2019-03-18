@@ -34,6 +34,9 @@ class HomeController < ApplicationController
     rt = xml_formatting(params[:input][:text]) if params[:XMLformatting].present?
     rt = json_formatting(params[:input][:text]) if params[:JSONformatting].present?
 
+    rt = deflate_base64(@input.text) if params[:DEFLATE].present?
+    rt = inflate_base64(@input.text) if params[:INFLATE].present?
+
     @input.index += 1
     @input.text = rt
   end
@@ -104,5 +107,13 @@ class HomeController < ApplicationController
 
   def json_formatting(value)
     JSON.pretty_generate(JSON.parse(value))
+  end
+
+  def deflate_base64(value)
+    base64_encode64(Zlib::Deflate.deflate(value, 9)[2..-5])
+  end
+
+  def inflate_base64(value)
+    Zlib::Inflate.new(-Zlib::MAX_WBITS).inflate(base64_decode64(value))
   end
 end

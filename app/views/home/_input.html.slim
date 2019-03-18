@@ -16,4 +16,7 @@
       = submit_tag 'XML.formatting',   { class: 'm-1 btn btn-sm btn-warning', name: 'XMLformatting'   }
       = submit_tag 'Json.formatting',  { class: 'm-1 btn btn-sm btn-warning', name: 'JSONformatting'  }
 
+      = submit_tag 'deflate+base64',   { class: 'm-1 btn btn-sm btn-info',    name: 'DEFLATE' }
+      = submit_tag 'base64+inflate',   { class: 'm-1 btn btn-sm btn-info',    name: 'INFLATE' }
+
 = tag.div id: "result_#{@input.index}"
