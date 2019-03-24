@@ -37,6 +37,9 @@ class HomeController < ApplicationController
     rt = deflate_base64(@input.text) if params[:DEFLATE].present?
     rt = inflate_base64(@input.text) if params[:INFLATE].present?
 
+    rt = html2slim(@input.text) if params[:HTML2SLIM].present?
+    rt = erb2slim(@input.text) if params[:ERB2SLIM].present?
+
     @input.index += 1
     @input.text = rt
   end
@@ -115,5 +118,13 @@ class HomeController < ApplicationController
 
   def inflate_base64(value)
     Zlib::Inflate.new(-Zlib::MAX_WBITS).inflate(base64_decode64(value))
+  end
+
+  def html2slim(value)
+    HTML2Slim::HTMLConverter.new(value).to_s
+  end
+
+  def erb2slim(value)
+    HTML2Slim::ERBConverter.new(value).to_s
   end
 end
